@@ -24,33 +24,31 @@ BASEMENT = PropertyConfig(
 
 MAIN_HOUSE = PropertyConfig(
     "37",
-    "1100024369080",
-    "22J0669504",
+    "1100024369099",  # Updated MPAN
+    "19L3590412",     # Updated meter serial
     "2411062202",
     "E6S14573012361"
 )
 
-# API Keys
+# API Keys and Authentication
 OCTOPUS_API_KEY = os.getenv('OCTOPUS_API_KEY')
+NEST_CLIENT_ID = os.getenv('NEST_CLIENT_ID')
+NEST_CLIENT_SECRET = os.getenv('NEST_CLIENT_SECRET')
+REDIRECT_URI = os.getenv('REDIRECT_URI')
+PORT = int(os.getenv('PORT', 8080))
+DEBUG = os.getenv('DEBUG', 'False').lower() == 'true'
+
+# Location Settings
 WEATHER_LATITUDE = 52.2823
 WEATHER_LONGITUDE = -1.5367
 
-# Google Cloud / Nest Configuration
-CLOUD_PROJECT_ID = "nest-optimization"  # Google Cloud project ID
-NEST_PROJECT_ID = "dcd67c4f-e5a4-4636-86ff-254bb867742f"  # Device Access project ID
-NEST_CLIENT_ID = "56513426026-ucnsa294ej8o8srm3ionco1e2lijr3cs.apps.googleusercontent.com"
-NEST_CLIENT_SECRET = os.getenv('NEST_CLIENT_SECRET')
-REDIRECT_URI = "http://localhost:8080/oauth2callback"  # Consistent Redirect URI
-SCOPES = [
-    "https://www.googleapis.com/auth/sdm.service"
-]
-
-# OAuth endpoints
+# Nest Configuration
+CLOUD_PROJECT_ID = "nest-optimization"
+NEST_PROJECT_ID = "dcd67c4f-e5a4-4636-86ff-254bb867742f"
+SCOPES = ["https://www.googleapis.com/auth/sdm.service"]
 AUTH_URL = "https://accounts.google.com/o/oauth2/v2/auth"
 TOKEN_URL = "https://oauth2.googleapis.com/token"
-
-# Pub/Sub Configuration
-PUBSUB_TOPIC = "projects/sdm-prod/topics/enterprise-dcd67c4f-e5a4-4636-86ff-254bb867742f"
+PUBSUB_TOPIC = f"projects/sdm-prod/topics/enterprise-{NEST_PROJECT_ID}"
 
 # Octopus Configuration
 AGILE_PRODUCT_CODE = 'AGILE-FLEX-22-11-25'
@@ -69,7 +67,3 @@ EXPENSIVE_RATE_THRESHOLD = 25.0
 # Time periods
 PEAK_START = '16:00'
 PEAK_END = '19:00'
-
-# Application Settings
-PORT = int(os.getenv('PORT', 8080))
-DEBUG = os.getenv('DEBUG', 'False') == 'True'
