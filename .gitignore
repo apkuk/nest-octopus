@@ -398,5 +398,5 @@ FodyWeavers.xsd
 *.sln.iml
 .env
 *.swp
-token.pickle
+*.pickle
 *.log
