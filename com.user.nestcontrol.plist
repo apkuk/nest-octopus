@@ -1,0 +1,32 @@
+cat > ~/Library/LaunchAgents/com.user.nestcontrol.plist << 'EOL'
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.user.nestcontrol</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/Users/andrewkilshaw/nest-octopus/venv/bin/python3</string>
+        <string>/Users/andrewkilshaw/nest-octopus/main.py</string>
+    </array>
+    <key>WorkingDirectory</key>
+    <string>/Users/andrewkilshaw/nest-octopus</string>
+    <key>StandardOutPath</key>
+    <string>/Users/andrewkilshaw/nest-octopus/logs/nest_octopus.log</string>
+    <key>StandardErrorPath</key>
+    <string>/Users/andrewkilshaw/nest-octopus/logs/nest_octopus.error.log</string>
+    <key>RunAtLoad</key>
+    <true/>
+    <key>StartInterval</key>
+    <integer>1800</integer>
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>PYTHONPATH</key>
+        <string>/Users/andrewkilshaw/nest-octopus</string>
+        <key>PATH</key>
+        <string>/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+    </dict>
+</dict>
+</plist>
+EOL
